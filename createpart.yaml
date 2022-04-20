@@ -1,0 +1,32 @@
+- name: partition new disk
+  hosts: ansible47-c-vm1
+  tasks:
+   - name: Makes file system on block device
+     filesystem:
+      fstype: xfs
+      dev: /dev/sdd1
+
+   - name: new dir to mount
+     file: path=/part1 state=directory
+
+   - name: mount the dir
+     mount:
+      path: /part1
+      src: /dev/sdd1
+      fstype: xfs
+      state: mounted
+
+   - name: Makes file system on block device
+     filesystem:
+      fstype: ext4
+      dev: /dev/sdd2
+
+   - name: new dir to mount
+     file: path=/part2 state=directory
+
+   - name: mount the dir
+     mount:
+      path: /part2
+      src: /dev/sdd2
+      fstype: etx4
+      state: mounted

@@ -1,0 +1,12 @@
+- name: This play will install software
+  hosts: ansible47-c-vm-dns-1
+  vars:
+    packages: nmap
+
+  tasks: 
+   - name: Inatsll "{{ packages }}" software
+     yum:
+      name: "{{ packages }}"
+      state: latest
+     when: packages is defined
+    

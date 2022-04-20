@@ -1,0 +1,12 @@
+- name: This play will install software
+  hosts: linux
+
+  tasks:
+   - name: Caputer user info
+     command: cat /etc/passwd
+     register: users
+
+   - name: show which server have this users
+     debug:
+        msg: "This server has proxy user"
+     when: users.stdout.find('proxy') != -1

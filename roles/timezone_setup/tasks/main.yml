@@ -1,0 +1,5 @@
+---
+- name: Changing timezone America/Toronto
+  timezone:
+   name: America/Toronto
+  when: '"Ritiksha" not in inventory_hostname'

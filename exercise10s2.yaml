@@ -1,0 +1,13 @@
+- name: This play will user info
+  hosts: linux
+   
+  tasks:
+   - name: Caputer user info
+     command: cat /etc/passwd
+     register: users
+
+   - name: show which server have this users
+     debug:
+        msg: "This server has proxy user1"
+     when:
+       - users.stdout.find('user1') != -1

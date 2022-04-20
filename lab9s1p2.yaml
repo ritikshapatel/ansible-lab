@@ -1,0 +1,32 @@
+- name: Create group and user using variable in ansible47-c-vm-dns-1
+  hosts: ansible47-c-vm-dns-1  
+  vars_files:
+    - vars/userinfo
+  tasks:
+  - name: create group10 in vm1  task1
+    group:
+      name: "{{ grouplist1 }}"
+      state: present
+  - name: Create gruup20 in vm1 task2
+    group:
+      name: "{{ grouplist2 }}"
+      state: present  
+  - name: Create user10 in vm1 task3
+    user:
+      name: "{{ userlist1 }}"
+      groups: "{{ grouplist1 }}"
+      append: 1
+      uid: 1800
+      state: present  
+      home: /home/"{{ userlist1 }}"
+  - name: Create user20 in vm1 task4
+    user:
+      name: "{{ userlist2 }}"
+      groups: "{{ grouplist2 }}"
+      append: 1
+      uid: 1900
+      state: present  
+      home: /home/"{{ userlist2 }}"
+
+  
+

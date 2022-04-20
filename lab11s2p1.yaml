@@ -1,0 +1,37 @@
+- name: handling task failure
+  hosts: linux
+  tasks:
+   - name: making change to /etc/profile file 
+     block: 
+      - name: adding ssh timeout
+        blockinfile: 
+           path: /etc/profile
+           insertafter: EOF 
+           backup: yes
+           state: present
+           block: |
+              export TMOUT=900
+
+      - name: setting umask to 0077 
+        lineinfile:
+            path: /etc/profile 
+            regex: "^umask"
+            line: "umask 0077"
+            state: present
+
+     rescue: 
+         - name: task to run if the fails
+           lineinfile:
+            path: ~/.bash_profile
+            regex: "^umask"
+            line: "umask 0066"
+            state: present
+
+     always:
+         - name: task to run always 
+           debug: 
+            msg: Playbook execution completed 
+
+ 
+
+

@@ -1,0 +1,24 @@
+- name: Restart Appache web service
+  hosts: ansible47-c-vm-dns-1
+
+  tasks:
+   - name: Restart Apache web Service if present
+     yum:
+       name: httpd
+       state: present 
+     notify: restart_httpd
+
+   - name: Creating web pages
+     copy:
+      src: index.html
+      dest: /var/www/html/index.html
+     notify: restart service
+    
+  handlers:
+    - name: restart_httpd
+      systemd:
+        name: httpd
+        state: restarted
+        enabled: yes
+  
+    

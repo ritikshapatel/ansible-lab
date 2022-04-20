@@ -1,0 +1,29 @@
+- name: Create 10 GB partition
+  hosts: ansible47-c-vm1
+
+  tasks:
+   - name: Create 4GB partition in linuxvm1
+     parted:
+       device: /dev/sdc 
+       number: 1
+       state: absent
+       part_start: 4GB
+
+   - name: Formate the Disk
+     filesystem: 
+       fstype: ext4
+       dev: /dev/sdc1
+
+   - name: Create Directory
+     file: 
+      path: /part1
+      state: directory 
+      mode: '0755'
+
+   - name: Mount Partition
+     mount: 
+       path: /part1 
+       src: /dev/sdc1
+       fstype: ext4
+       state: mounted
+    

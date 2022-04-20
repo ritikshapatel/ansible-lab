@@ -1,0 +1,44 @@
+- name: managing files and folder
+  hosts: ansible47-c-vm-dns-1
+  tasks:
+   - name: Creating locfile
+     file:
+       path: /home/locfile
+       state: touch 
+       mode: 0644
+       owner: root 
+       group: root 
+
+   - name: coping file to /tmp directory
+     copy: 
+       src: /home/locfile 
+       dest: /tmp 
+       mode: 0444
+       owner: root 
+       group: root 
+       remote_src: true 
+
+   - name: setting SELinux
+     file: 
+       path: /tmp/locfile
+       setype: etc_t
+   - name: Showing status of file
+     stat: 
+      path: /tmp/locfile 
+     register: stat_output
+   - name: displaying status 
+     debug: 
+       var: stat_output 
+
+- name: Creating files
+  hosts: linux
+  tasks: 
+   - name: Creating files on managed nodes
+     file: 
+       path: /home/emptyfile 
+       state: touch 
+       mode: 0644 
+       owner: root 
+       group: root 
+        
+

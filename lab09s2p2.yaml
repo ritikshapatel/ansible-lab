@@ -1,0 +1,8 @@
+- name: Install package
+  hosts: linux
+  tasks:
+    - name: Install cifs-utils task1
+      yum:
+       name: "{{ package }}"
+       state: latest
+

@@ -1,0 +1,18 @@
+- name: this play will create user and group and add suplimentory group
+  hosts: ansible47-c-vm-dns-2
+
+  
+  tasks:
+  - name: Create user
+    user:
+      name: devops1
+      uid: 5000
+      state: present
+ 
+   - name: Create group
+     group:
+       name: devops
+       gid: 2000
+       state: present
+ 
+      

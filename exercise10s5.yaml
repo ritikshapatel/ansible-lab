@@ -1,0 +1,10 @@
+- name: this playbook install mariadb-server
+  hosts: ansible47-c-vm-dns-2
+  tasks:
+     - name: Install package from vars in vm2 
+       yum:
+        name: "{{ package }}"
+        state: latest
+       loop: "{{ ansible_mounts }}"
+       when: item.mount == "/" and item.size_available > 500000
+

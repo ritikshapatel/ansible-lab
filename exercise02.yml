@@ -1,0 +1,16 @@
+- name: this play will create user and group
+  hosts: ansible47-c-vm-dns-1
+
+  tasks:
+    - name: Create user
+      user:
+         name: user4001
+         uid: 5001
+         state: present
+
+    - name: Create group 
+      group:
+         name: cloudadminas
+         gid: 2001
+         state: present
+

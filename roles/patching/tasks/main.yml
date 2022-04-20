@@ -1,0 +1,8 @@
+---
+- name: patching CentOS/RHEL VM
+  yum:
+    name: '*'
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
+  notify: reboot_handler

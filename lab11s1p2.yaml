@@ -1,0 +1,30 @@
+- name: Restart Mariadb and Apache web services
+  hosts: ansible47-c-vm-dns-2
+  tasks:
+   - name: Restart Mariadb and Apache web services
+     yum:
+       name: mariadb-server,httpd
+       state: latest
+     notify: 
+         - restart_httpd
+         - restart_mariadb
+              
+
+  handlers:
+    - name: restart_mariadb
+      systemd:
+        name: mariadb
+        state: restarted
+        enabled: true
+
+    - name: restart_httpd
+      systemd:
+        name: httpd
+        state: restarted
+        enabled: true
+    - name: starting both services
+      shell: |
+          systemctl status httpd
+          systemctl status mariadb
+        
+        

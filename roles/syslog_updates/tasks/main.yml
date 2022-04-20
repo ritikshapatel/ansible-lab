@@ -1,0 +1,24 @@
+---
+# tasks file for roles/syslog_updates
+- name: adding ssh timeout
+  blockinfile: 
+       path: "{{syslog_path}}"
+       insertafter: EOF 
+       backup: yes
+       state: present 
+       block: |
+           $FileCreateMode: 0640
+- name: Setting permission and ownership
+  file:
+   path: "{{syslog_dir_path}}"
+   mode: 0640
+   owner: root
+   group: root
+   recurse: yes
+
+- name: setting /var/logs permission
+  file:
+    path: "{{log_path}}"
+    mode: 0775
+  notify: syslog_restart
+

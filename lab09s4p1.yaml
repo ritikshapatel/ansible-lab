@@ -1,0 +1,12 @@
+- name: The play will capture and display all facts
+  hosts: ansible47wvm
+  gather_facts: true
+  tasks:
+    - name: Display node facts task1
+      debug:
+        var: ansible_facts
+
+    - name: Display fqdn,ip,hostname task2
+      debug:
+       msg: > 
+         FQDN is {{ ansible_facts['fqdn'] }} wih IP address is {{ ansible_facts['ip_addresses'] }} and Short hostname is {{ansible_facts['hostname']}}                                

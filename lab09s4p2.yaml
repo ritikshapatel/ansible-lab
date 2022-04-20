@@ -1,0 +1,17 @@
+- name: The play will list version of setup
+  hosts: ansible47-c-vm-dns-1
+  gather_facts: true
+  tasks:
+    - name: Gather package info task1
+      package_facts :
+        manager: auto
+
+    - name: list installed packages task2
+      debug:
+        var: packages
+
+    - name: Display setup package task3
+      debug:
+       msg: 
+         The setup package verion is {{ packages['setup'][0].version }} 
+                        

@@ -1,0 +1,11 @@
+---
+- name: This playbook include external roles
+  hosts: linux
+  tasks:
+   - name: include a role 
+     include_role:
+      name: timezone_setup
+
+  roles: 
+    - timezone_setup
+

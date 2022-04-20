@@ -1,0 +1,6 @@
+---
+# vars file for roles/syslog_updates
+ syslog_path: /etc/rsyslog.conf
+ syslog_dir_path: /etc/resyslog.d
+ log_path: /var/log
+

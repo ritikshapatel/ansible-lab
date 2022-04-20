@@ -1,0 +1,6 @@
+---
+# handlers file for roles/syslog_updates
+- name: syslog_restart
+  service: 
+    name: rsyslog
+    state: restarted

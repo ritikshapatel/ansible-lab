@@ -1,0 +1,8 @@
+---
+- name: This playbook include external roles
+  hosts: linux
+  roles: 
+    - package_remove
+    - package_install
+    - patching
+

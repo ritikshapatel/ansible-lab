@@ -1,0 +1,16 @@
+- name: Install package in ansible47-c-vm-dns-1 hosts
+  hosts: ansible47-c-vm-dns-1
+  tasks:
+    - name: Install bind and evolution task1
+      yum:
+       name: "{{ package }}"
+       state: latest
+      register: creation_result
+
+    - name: Display entire install task2
+      debug:
+        var: creation_result
+
+    - name: Display name of packages installed task3
+      debug: 
+         msg: Display the name of packages installed {{ creation_result['changed'] }}

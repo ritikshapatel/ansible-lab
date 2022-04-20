@@ -1,0 +1,10 @@
+- name: this is play willinstall ypserv software
+  hosts: localhost
+  tasks:
+   - name: install ypserv software
+     dnf:
+      name:
+       - ypserv
+      state: latest
+
+
